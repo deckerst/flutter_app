@@ -37,13 +37,17 @@ jobs:
       - name: Get Flutter packages
         run: flutter pub get
 
-      - run: echo "PUB_CACHE=${{ runner.tool_cache }}/.pub-cache" >> $GITHUB_ENV
-
       - name: Remove build ID from native lib
         # cf https://github.com/deckerst/aves/issues/1521#issuecomment-5229015364
         run: |
           echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
           ls $RUNNER_TOOL_CACHE
+          echo "ls ${RUNNER_TOOL_CACHE}/flutter"
+          ls ${RUNNER_TOOL_CACHE}/flutter
+          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2"
+          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2
+          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/x64"
+          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/x64
           PUB_CACHE=$RUNNER_TOOL_CACHE/flutter/3.47.2/x64/.pub-cache
           echo "PUB_CACHE=$PUB_CACHE"
           ls ${PUB_CACHE}/hosted/*
