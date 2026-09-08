@@ -12,19 +12,7 @@ jobs:
   release_github:
     name: GitHub release
     runs-on: ubuntu-latest
-    permissions:
-      attestations: write
-      contents: write
-      id-token: write
     steps:
-      # Building relies on the Android Gradle plugin,
-      # which requires a modern Java version (not the default one).
-      - name: Set up JDK for Android Gradle plugin
-        uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -41,11 +29,11 @@ jobs:
         # cf https://github.com/deckerst/aves/issues/1521#issuecomment-5229015364
         run: |
           echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
-          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable"
-          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable
-          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/x64"
-          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/x64
-          PUB_CACHE=$RUNNER_TOOL_CACHE/flutter/3.47.2/stable/x64/.pub-cache
+          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter"
+          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter
+          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter/x64"
+          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter/x64
+          PUB_CACHE=$RUNNER_TOOL_CACHE/flutter/3.47.2/stable/flutter/x64/.pub-cache
           echo "PUB_CACHE=$PUB_CACHE"
           ls ${PUB_CACHE}/hosted/*
           sed -i -e 's/-Wl,/-Wl,--build-id=none,/' ${PUB_CACHE}/hosted/*/jni-*/src/CMakeLists.txt 2>/dev/null || true
