@@ -28,12 +28,12 @@ jobs:
       - name: Remove build ID from native lib
         # cf https://github.com/deckerst/aves/issues/1521#issuecomment-5229015364
         run: |
-          echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
-          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter"
-          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter
-          echo "ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter/x64"
-          ls ${RUNNER_TOOL_CACHE}/flutter/3.47.2/stable/flutter/x64
-          PUB_CACHE=$RUNNER_TOOL_CACHE/flutter/3.47.2/stable/flutter/x64/.pub-cache
+          flutter pub -v
+          echo "pwd"
+          pwd
+          echo "ls"
+          ls
+          PUB_CACHE=.pub-cache
           echo "PUB_CACHE=$PUB_CACHE"
           ls ${PUB_CACHE}/hosted/*
           sed -i -e 's/-Wl,/-Wl,--build-id=none,/' ${PUB_CACHE}/hosted/*/jni-*/src/CMakeLists.txt 2>/dev/null || true
