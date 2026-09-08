@@ -28,7 +28,7 @@ jobs:
       - name: Remove build ID from native lib
         # cf https://github.com/deckerst/aves/issues/1521#issuecomment-5229015364
         run: |
-          flutter pub -v
+          flutter doctor -v
           echo "pwd"
           pwd
           echo "ls"
