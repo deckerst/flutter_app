@@ -19,12 +19,12 @@ jobs:
       - name: Get Flutter packages
         run: ./flutterw pub get
 
-      - name: Remove build ID from native lib
-        # cf https://github.com/deckerst/aves/issues/1521#issuecomment-5229015364
+      - name: Build
         run: |
-          echo "PUB_CACHE=$PUB_CACHE"
-          echo "Edit native lib build scripts from pub-cache hosted packages:"
-          ls ${PUB_CACHE}/hosted/*
-          sed -i -e 's/-Wl,/-Wl,--build-id=none,/' ${PUB_CACHE}/hosted/*/jni-*/src/CMakeLists.txt 2>/dev/null || true
-        env:
-          PUB_CACHE: $HOME/.pub-cache
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          echo "ANDROID_NDK=$ANDROID_NDK"
+          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
+          echo "ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME"
+          echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
+          ./flutterw build apk
