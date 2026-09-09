@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl4x/datetime_format.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key}) {
-    debugPrint('locale=${Locale.parse('en').withCalendar(Calendar.buddhist)}');
-  }
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -59,6 +57,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -107,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
+            Text('locale=${Locale.parse('en').withCalendar(Calendar.buddhist)}'),
             const Text('You have pushed the button this many times:'),
             Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
           ],
