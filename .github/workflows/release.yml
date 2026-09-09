@@ -19,7 +19,11 @@ jobs:
       - name: Get Flutter packages
         run: |
           ./flutterw doctor -v
-          ./flutterw pub get
+          ./flutterw pub get --enforce-lockfile
+          PUB_CACHE=$HOME/.pub-cache
+          echo "PUB_CACHE=$PUB_CACHE"
+          echo "Pub cache hosted packages:"
+          ls ${PUB_CACHE}/hosted/*
 
       - name: Build
         # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md#environment-variables-2

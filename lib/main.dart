@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl4x/datetime_format.dart';
+import 'package:intl4x/datetime_format.dart' as intl4x;
 
 void main() {
   runApp(const MyApp());
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
-            Text('locale=${Locale.parse('en').withCalendar(Calendar.buddhist)}'),
+            Text('locale=${intl4x.Locale.parse('en').withCalendar(intl4x.Calendar.buddhist)}'),
             const Text('You have pushed the button this many times:'),
             Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
           ],
